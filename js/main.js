@@ -96,7 +96,7 @@ $(document).ready(function() {
 
   // How to button click
   $('#how-to-button').click(function() {
-    swal("Hur du spelar", "Word Scramble är ett spännande ordspel där du ska försöka lista ut vilket ord du har framför dig på skärmen. Det finns flera kluriga nivåer, så börja gissa på.");
+    swal("Hur du spelar", "Word Scramble är ett spännande ordspel där du ska försöka lista ut vilket ord du har framför dig på skärmen. Det finns flera kluriga nivåer, så börja gissa redan nu!");
   });
 
   // Reset game button click
