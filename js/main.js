@@ -17,55 +17,55 @@ $(document).ready(function() {
       $('#g1').addClass('completed');
     }
   }
-  
+
   if (wsg2 !== null) {
     if (parseInt(wsg2) === 10) {
       $('#g2').addClass('completed');
     }
   }
-  
+
   if (wsg3 !== null) {
     if (parseInt(wsg3) === 10) {
       $('#g3').addClass('completed');
     }
   }
-  
+
   if (wsg4 !== null) {
     if (parseInt(wsg4) === 10) {
       $('#g4').addClass('completed');
     }
   }
-  
+
   if (wsg5 !== null) {
     if (parseInt(wsg5) === 10) {
       $('#g5').addClass('completed');
     }
   }
-  
+
   if (wsg6 !== null) {
     if (parseInt(wsg6) === 10) {
       $('#g6').addClass('completed');
     }
   }
-  
+
   if (wsg7 !== null) {
     if (parseInt(wsg7) === 10) {
       $('#g7').addClass('completed');
     }
   }
-  
+
   if (wsg8 !== null) {
     if (parseInt(wsg8) === 10) {
       $('#g8').addClass('completed');
     }
   }
-  
+
   if (wsg9 !== null) {
     if (parseInt(wsg9) === 10) {
       $('#g9').addClass('completed');
     }
   }
-  
+
   if (wsg10 !== null) {
     if (parseInt(wsg10) === 10) {
       $('#g10').addClass('completed');
@@ -85,7 +85,7 @@ $(document).ready(function() {
     $(this).addClass('locked');
     $(this).html('<img src="img/padlock.png">');
   });
-  
+
   // Check if previous level is completed and unlock the next level
   for (var i = 1; i <= 10; i++) {
     if ($('#g' + i).hasClass('completed')) {
@@ -93,10 +93,10 @@ $(document).ready(function() {
       $('#g' + i).parent().nextAll('.one-fifth').first().find('a').html(i + 1 + '<span>&check;</span>');
     }
   }
-  
+
   // How to button click
   $('#how-to-button').click(function() {
-    swal("Hur du spelar", "Color Maze is an exciting puzzle game where you control a character through a maze. The goal is to color all the tiles by guiding the character over them. But be careful! There are obstacles that you must avoid, otherwise you'll have to start over. \n\n The character can only move in four directions: up, down, left, and right. Each time you complete a level, a new maze is generated for you to explore.");
+    swal("Hur du spelar", "Word Scramble är ett spännande ordspel där du ska försöka lista ut vilket ord du har framför dig på skärmen.");
   });
 
   // Reset game button click
