@@ -397,6 +397,6 @@ div.spacer {clear:both; display:block; height:10px;}
   .shop-item span img {margin-bottom: 0; padding: 5px 5px; width: 24px;}
   .shop-item p {font-size: 12px;}
   .shop-item p img {position:relative; top:2px; width:16px;}
-  .shop-item p:first-child {margin-top: 5px; margin-bottom: 2px;}
-  .shop-item p:last-child {margin-top: 0; margin-bottom: 5px;}
+  .shop-item p:first-child {margin-top: 5px; margin-bottom: 5px;}
+  .shop-item p:last-child {margin-top: 5px; margin-bottom: 5px;}
 }
