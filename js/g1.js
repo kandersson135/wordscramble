@@ -29,6 +29,28 @@ $(document).ready(function() {
 		$("#score span").text(wsGold);
 	}
 
+  // Set power up count
+  if (localStorage.getItem("wsClue") === null || localStorage.getItem("wsClue") <= 0) {
+    $('#clue').addClass("disabled");
+	} else {
+		$('#clue span').html(localStorage.getItem("wsClue"));
+		$('#clue span').show();
+	}
+
+  if (localStorage.getItem("wsScramble") === null || localStorage.getItem("wsScramble") <= 0) {
+    $('#scramble').addClass("disabled");
+	} else {
+		$('#scramble span').html(localStorage.getItem("wsScramble"));
+		$('#scramble span').show();
+	}
+
+  if (localStorage.getItem("wsSolve") === null || localStorage.getItem("wsSolve") <= 0) {
+    $('#solve').addClass("disabled");
+	} else {
+		$('#solve span').html(localStorage.getItem("wsSolve"));
+		$('#solve span').show();
+	}
+
   // Clickspark
   clickSpark.setParticleCount(5);
   clickSpark.setParticleImagePath('img/coin.png');
@@ -44,7 +66,7 @@ $(document).ready(function() {
     const scrambledWord = scramble(currentWord);
     const wordDisplay = document.getElementById('word-display');
     wordDisplay.innerHTML = '';
-    
+
     tiles.play();
 
     for (let i = 0; i < scrambledWord.length; i++) {
@@ -129,4 +151,29 @@ $(document).ready(function() {
   });
 
   generateWord();
+
+
+  // Clue button click
+	$('#clue').click(function() {
+  	// Subtract 1 of clue power
+  	let oldCluePower = localStorage.getItem("wsClue");
+  	localStorage.setItem("wsClue", (parseInt(oldCluePower)) - 1);
+  	$('#clue span').html(localStorage.getItem("wsClue"));
+  });
+
+  // Scramble button click
+	$('#scramble').click(function() {
+  	// Subtract 1 of scramble power
+  	let oldScramblePower = localStorage.getItem("wsScramble");
+  	localStorage.setItem("wsScramble", (parseInt(oldScramblePower)) - 1);
+  	$('#scramble span').html(localStorage.getItem("wsScramble"));
+  });
+
+  // Solve button click
+	$('#solve').click(function() {
+  	// Subtract 1 of solve power
+  	let oldSolvePower = localStorage.getItem("wsSolve");
+  	localStorage.setItem("wsSolve", (parseInt(oldSolvePower)) - 1);
+  	$('#solve span').html(localStorage.getItem("wsSolve"));
+  });
 });

@@ -231,7 +231,7 @@ h1 {
   width: 20px;
 }
 #game-buttons li a:active {box-shadow:none; position:relative; top:3px;}
-.disabled {cursor:default; pointer-events:none;}
+.disabled {cursor:default; pointer-events:none; opacity: 0.4;}
 
 /* SHOP */
 .shop-item {

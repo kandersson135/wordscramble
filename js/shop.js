@@ -44,11 +44,11 @@ $(document).ready(function() {
   // Buy scramble
   $('.scramble').click(function() {
     if (wsGold <= 5) {
-    	swal("Köpa scramble?", "Inte nog med pengar!");
+    	swal("Köpa blanda?", "Inte nog med pengar!");
     } else {
     	swal({
-        title: "Köpa scramble?",
-        text: "Vill du köpa en scramble?",
+        title: "Köpa blanda?",
+        text: "Vill du köpa en blanda?",
         buttons: true,
       })
       .then((willBuy) => {
