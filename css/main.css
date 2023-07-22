@@ -233,6 +233,41 @@ h1 {
 #game-buttons li a:active {box-shadow:none; position:relative; top:3px;}
 .disabled {cursor:default; pointer-events:none;}
 
+/* SHOP */
+.shop-item {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  box-shadow: 0px 4px rgba(255, 255, 255, 0.5);
+  color: rgba(50, 50, 50, 0.8);
+  cursor: pointer;
+}
+
+.shop-item span img {
+  background: rgba(50, 50, 50, 0.1);
+  border-radius: 5px;
+  margin: 5px 0;
+  padding: 10px 10px;
+  width: 32px;
+}
+
+.shop-item p img {position:relative; top:2px; width:16px;}
+.shop-item p:first-child {margin-top: 5px; margin-bottom: 5px;}
+.shop-item p:last-child {margin-top: 5px; margin-bottom: 5px;}
+
+.shop-item:active {
+  box-shadow: none;
+  position: relative;
+  top: 4px;
+}
+
+#shop-title {
+  color: rgba(50, 50, 50, 0.6);
+  font-size: 24px;
+  margin-bottom: 20px;
+  margin-top: -50px;
+}
+
 /* MODAL BOX */
 .swal-modal {
   background-color: rgba(255, 255, 255, 0.8);
@@ -322,20 +357,20 @@ div.spacer {clear:both; display:block; height:10px;}
   #word-display {
     font-size: 24px;
   }
-  
+
   #user-input {
     font-family: Arial, sans-serif;
   }
-  
+
   #top-btn, #score {
     height: 30px;
     line-height: 20px;
   }
-  
+
   #game-buttons li a {
     line-height:35px;
   }
-  
+
   .swal-button {
     height: 40px;
     line-height: 15px;
@@ -360,7 +395,7 @@ div.spacer {clear:both; display:block; height:10px;}
     width: 24px;
     margin-top: 15px;
   }
-  
+
   .level span {
     line-height: 15px;
   }
