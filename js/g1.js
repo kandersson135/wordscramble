@@ -74,6 +74,26 @@ $(document).ready(function() {
     $("#user-input").attr("placeholder", "Gissa ordet");
   }
 
+  function solveWord() {
+    //currentWord = words[Math.floor(Math.random() * words.length)];
+    currentWord = words[currentLevel - 1];
+    const wordDisplay = document.getElementById('word-display');
+    wordDisplay.innerHTML = '';
+
+    tiles.play();
+
+    for (let i = 0; i < currentWord.length; i++) {
+      const letter = document.createElement('span');
+      letter.textContent = currentWord[i];
+      letter.classList.add('letter');
+      letter.style.animationDelay = `${i * 0.05}s`;
+      wordDisplay.appendChild(letter);
+    }
+
+    $('#user-input').focus();
+    $("#user-input").attr("placeholder", "Gissa ordet");
+  }
+
   function scramble(word) {
     let scrambled = '';
     const wordArray = word.split('');
@@ -159,7 +179,7 @@ $(document).ready(function() {
 
   // Solve button click
 	$('#solve').click(function() {
-    $('#user-input').val(currentWord);
+    solveWord();
 
   	// Subtract 1 of solve power
   	let oldSolvePower = localStorage.getItem("ws-solve");
