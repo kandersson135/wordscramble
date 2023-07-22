@@ -154,10 +154,14 @@ $(document).ready(function() {
 
   // Clue button click
 	$('#clue').click(function() {
-  	// Subtract 1 of clue power
-  	let oldCluePower = localStorage.getItem("ws-clue");
-  	localStorage.setItem("ws-clue", (parseInt(oldCluePower)) - 1);
-  	$('#clue span').html(localStorage.getItem("ws-clue"));
+    if (localStorage.getItem("ws-clue") === 0) {
+  		$('#clue').addClass("disabled");
+  	} else {
+      // Subtract 1 of clue power
+    	let oldCluePower = localStorage.getItem("ws-clue");
+    	localStorage.setItem("ws-clue", (parseInt(oldCluePower)) - 1);
+    	$('#clue span').html(localStorage.getItem("ws-clue"));
+  	}
   });
 
   // Scramble button click
