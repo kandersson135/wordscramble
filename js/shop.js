@@ -3,6 +3,8 @@ $(document).ready(function() {
   let wsScramble = localStorage.getItem("ws-scramble");
   let wsSolve = localStorage.getItem("ws-solve");
   let wsClue = localStorage.getItem("ws-clue");
+  let purchase = new Audio("audio/transaction.wav");
+  purchase.volume = 0.3;
 
   // Display gold amount
   if (wsGold === null) {
@@ -27,13 +29,13 @@ $(document).ready(function() {
             localStorage.setItem("ws-clue", 1);
           	localStorage.setItem("ws-gold", parseInt(wsGold) - 5);
           	$("#score span").text(wsGold - 5);
-          	//purchase.play();
+          	purchase.play();
             setTimeout(function(){location.reload();}, 1000);
           } else {
             localStorage.setItem("ws-clue", parseInt(wsClue) + 1);
           	localStorage.setItem("ws-gold", parseInt(wsGold) - 5);
           	$("#score span").text(wsGold - 5);
-          	//purchase.play();
+          	purchase.play();
           	setTimeout(function(){location.reload();}, 1000);
           }
         }
@@ -57,13 +59,13 @@ $(document).ready(function() {
             localStorage.setItem("ws-scramble", 1);
           	localStorage.setItem("ws-gold", parseInt(wsGold) - 5);
           	$("#score span").text(wsGold - 5);
-          	//purchase.play();
+          	purchase.play();
             setTimeout(function(){location.reload();}, 1000);
           } else {
             localStorage.setItem("ws-scramble", parseInt(wsScramble) + 1);
           	localStorage.setItem("ws-gold", parseInt(wsGold) - 5);
           	$("#score span").text(wsGold - 5);
-          	//purchase.play();
+          	purchase.play();
           	setTimeout(function(){location.reload();}, 1000);
           }
         }
