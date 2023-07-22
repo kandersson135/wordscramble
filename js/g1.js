@@ -156,24 +156,24 @@ $(document).ready(function() {
   // Clue button click
 	$('#clue').click(function() {
   	// Subtract 1 of clue power
-  	let oldCluePower = localStorage.getItem("wsClue");
-  	localStorage.setItem("wsClue", (parseInt(oldCluePower)) - 1);
-  	$('#clue span').html(localStorage.getItem("wsClue"));
+  	let oldCluePower = localStorage.getItem("ws-clue");
+  	localStorage.setItem("ws-clue", (parseInt(oldCluePower)) - 1);
+  	$('#clue span').html(localStorage.getItem("ws-clue"));
   });
 
   // Scramble button click
 	$('#scramble').click(function() {
   	// Subtract 1 of scramble power
-  	let oldScramblePower = localStorage.getItem("wsScramble");
-  	localStorage.setItem("wsScramble", (parseInt(oldScramblePower)) - 1);
-  	$('#scramble span').html(localStorage.getItem("wsScramble"));
+  	let oldScramblePower = localStorage.getItem("ws-scramble");
+  	localStorage.setItem("ws-scramble", (parseInt(oldScramblePower)) - 1);
+  	$('#scramble span').html(localStorage.getItem("ws-scramble"));
   });
 
   // Solve button click
 	$('#solve').click(function() {
   	// Subtract 1 of solve power
-  	let oldSolvePower = localStorage.getItem("wsSolve");
-  	localStorage.setItem("wsSolve", (parseInt(oldSolvePower)) - 1);
-  	$('#solve span').html(localStorage.getItem("wsSolve"));
+  	let oldSolvePower = localStorage.getItem("ws-solve");
+  	localStorage.setItem("ws-solve", (parseInt(oldSolvePower)) - 1);
+  	$('#solve span').html(localStorage.getItem("ws-solve"));
   });
 });
