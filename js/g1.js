@@ -30,24 +30,24 @@ $(document).ready(function() {
 	}
 
   // Set power up count
-  if (localStorage.getItem("wsClue") === null || localStorage.getItem("wsClue") <= 0) {
+  if (localStorage.getItem("ws-clue") === null || localStorage.getItem("ws-clue") <= 0) {
     $('#clue').addClass("disabled");
 	} else {
-		$('#clue span').html(localStorage.getItem("wsClue"));
+		$('#clue span').html(localStorage.getItem("ws-clue"));
 		$('#clue span').show();
 	}
 
-  if (localStorage.getItem("wsScramble") === null || localStorage.getItem("wsScramble") <= 0) {
+  if (localStorage.getItem("ws-scramble") === null || localStorage.getItem("ws-scramble") <= 0) {
     $('#scramble').addClass("disabled");
 	} else {
-		$('#scramble span').html(localStorage.getItem("wsScramble"));
+		$('#scramble span').html(localStorage.getItem("ws-scramble"));
 		$('#scramble span').show();
 	}
 
-  if (localStorage.getItem("wsSolve") === null || localStorage.getItem("wsSolve") <= 0) {
+  if (localStorage.getItem("ws-solve") === null || localStorage.getItem("ws-solve") <= 0) {
     $('#solve').addClass("disabled");
 	} else {
-		$('#solve span').html(localStorage.getItem("wsSolve"));
+		$('#solve span').html(localStorage.getItem("ws-solve"));
 		$('#solve span').show();
 	}
 
