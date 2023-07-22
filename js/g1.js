@@ -152,7 +152,6 @@ $(document).ready(function() {
 
   generateWord();
 
-
   // Clue button click
 	$('#clue').click(function() {
   	// Subtract 1 of clue power
