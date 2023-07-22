@@ -159,6 +159,8 @@ $(document).ready(function() {
 
   // Solve button click
 	$('#solve').click(function() {
+    $('#user-input').val(currentWord);
+
   	// Subtract 1 of solve power
   	let oldSolvePower = localStorage.getItem("ws-solve");
   	localStorage.setItem("ws-solve", (parseInt(oldSolvePower)) - 1);
