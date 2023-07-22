@@ -13,7 +13,7 @@ $(document).ready(function() {
 
   // Buy clue
   $('.clue').click(function() {
-    if (wsGold <= 5) {
+    if (wsGold < 5) {
     	swal("Köpa ledtråd?", "Inte nog med pengar!");
     } else {
     	swal({
@@ -73,7 +73,7 @@ $(document).ready(function() {
 
   // Buy solve
   $('.solve').click(function() {
-    if (wsGold <= 10) {
+    if (wsGold < 10) {
     	swal("Köpa lösning?", "Inte nog med pengar!");
     } else {
     	swal({
