@@ -37,13 +37,6 @@ $(document).ready(function() {
 		$('#clue span').show();
 	}
 
-  if (localStorage.getItem("ws-scramble") === null || localStorage.getItem("ws-scramble") <= 0) {
-    $('#scramble').addClass("disabled");
-	} else {
-		$('#scramble span').html(localStorage.getItem("ws-scramble"));
-		$('#scramble span').show();
-	}
-
   if (localStorage.getItem("ws-solve") === null || localStorage.getItem("ws-solve") <= 0) {
     $('#solve').addClass("disabled");
 	} else {
@@ -162,14 +155,6 @@ $(document).ready(function() {
     	localStorage.setItem("ws-clue", (parseInt(oldCluePower)) - 1);
     	$('#clue span').html(localStorage.getItem("ws-clue"));
   	}
-  });
-
-  // Scramble button click
-	$('#scramble').click(function() {
-  	// Subtract 1 of scramble power
-  	let oldScramblePower = localStorage.getItem("ws-scramble");
-  	localStorage.setItem("ws-scramble", (parseInt(oldScramblePower)) - 1);
-  	$('#scramble span').html(localStorage.getItem("ws-scramble"));
   });
 
   // Solve button click
