@@ -75,7 +75,6 @@ $(document).ready(function() {
   }
 
   function solveWord() {
-    //currentWord = words[Math.floor(Math.random() * words.length)];
     currentWord = words[currentLevel - 1];
     const wordDisplay = document.getElementById('word-display');
     wordDisplay.innerHTML = '';
