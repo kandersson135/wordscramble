@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  const words = ['äpple', 'banan', 'apelsin', 'jordgubbe', 'vindruva', 'kiwi', 'melon', 'ananas', 'mango', 'päron'];
+  const words = ['äpple', 'banan', 'apelsin', 'kiwi', 'melon', 'ananas', 'mango', 'päron', 'jordgubbe', 'vindruva'];
   let wsg1 = localStorage.getItem("ws-g1");
   let wsGold = localStorage.getItem("ws-gold");
   let currentWord;

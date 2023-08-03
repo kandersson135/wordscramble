@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  const words = ['hund', 'björn', 'lejon', 'påfågel', 'kamel', 'uggla', 'giraff', 'kameleont', 'blåval', 'krokodil'];
+  const words = ['hund', 'björn', 'lejon', 'påfågel', 'kamel', 'uggla', 'giraff', 'blåval', 'kameleont', 'krokodil'];
   let wsg3 = localStorage.getItem("ws-g3");
   let wsGold = localStorage.getItem("ws-gold");
   let currentWord;
@@ -11,7 +11,7 @@ $(document).ready(function() {
   success.volume = 0.3;
   fail.volume = 0.3;
   tiles.volume = 0.3;
-  
+
   // Get current level
   if (wsg3 === null) {
     currentLevel = 1;
@@ -44,7 +44,7 @@ $(document).ready(function() {
     const scrambledWord = scramble(currentWord);
     const wordDisplay = document.getElementById('word-display');
     wordDisplay.innerHTML = '';
-    
+
     tiles.play();
 
     for (let i = 0; i < scrambledWord.length; i++) {

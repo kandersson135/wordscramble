@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  const words = ['lastbil', 'flygplan', 'tåg', 'cykel', 'buss', 'traktor', 'moped', 'helikopter', 'snöskoter', 'fyrhjuling'];
+  const words = ['buss', 'tåg', 'flygplan', 'cykel', 'lastbil', 'traktor', 'moped', 'helikopter', 'snöskoter', 'fyrhjuling'];
   let wsg10 = localStorage.getItem("ws-g10");
   let wsGold = localStorage.getItem("ws-gold");
   let currentWord;
@@ -11,7 +11,7 @@ $(document).ready(function() {
   success.volume = 0.3;
   fail.volume = 0.3;
   tiles.volume = 0.3;
-  
+
   // Get current level
   if (wsg10 === null) {
     currentLevel = 1;
@@ -44,7 +44,7 @@ $(document).ready(function() {
     const scrambledWord = scramble(currentWord);
     const wordDisplay = document.getElementById('word-display');
     wordDisplay.innerHTML = '';
-    
+
     tiles.play();
 
     for (let i = 0; i < scrambledWord.length; i++) {
