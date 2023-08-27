@@ -11,7 +11,7 @@ $(document).ready(function() {
   success.volume = 0.3;
   fail.volume = 0.3;
   tiles.volume = 0.3;
-  
+
   // Get current level
   if (wsg2 === null) {
     currentLevel = 1;
@@ -29,6 +29,21 @@ $(document).ready(function() {
 		$("#score span").text(wsGold);
 	}
 
+  // Set power up count
+  if (localStorage.getItem("ws-clue") === null || localStorage.getItem("ws-clue") <= 0) {
+    $('#clue').addClass("disabled");
+	} else {
+		$('#clue span').html(localStorage.getItem("ws-clue"));
+		$('#clue span').show();
+	}
+
+  if (localStorage.getItem("ws-solve") === null || localStorage.getItem("ws-solve") <= 0) {
+    $('#solve').addClass("disabled");
+	} else {
+		$('#solve span').html(localStorage.getItem("ws-solve"));
+		$('#solve span').show();
+	}
+
   // Clickspark
   clickSpark.setParticleCount(5);
   clickSpark.setParticleImagePath('img/coin.png');
@@ -44,12 +59,31 @@ $(document).ready(function() {
     const scrambledWord = scramble(currentWord);
     const wordDisplay = document.getElementById('word-display');
     wordDisplay.innerHTML = '';
-    
+
     tiles.play();
 
     for (let i = 0; i < scrambledWord.length; i++) {
       const letter = document.createElement('span');
       letter.textContent = scrambledWord[i];
+      letter.classList.add('letter');
+      letter.style.animationDelay = `${i * 0.05}s`;
+      wordDisplay.appendChild(letter);
+    }
+
+    $('#user-input').focus();
+    $("#user-input").attr("placeholder", "Gissa ordet");
+  }
+
+  function solveWord() {
+    currentWord = words[currentLevel - 1];
+    const wordDisplay = document.getElementById('word-display');
+    wordDisplay.innerHTML = '';
+
+    tiles.play();
+
+    for (let i = 0; i < currentWord.length; i++) {
+      const letter = document.createElement('span');
+      letter.textContent = currentWord[i];
       letter.classList.add('letter');
       letter.style.animationDelay = `${i * 0.05}s`;
       wordDisplay.appendChild(letter);
@@ -129,4 +163,26 @@ $(document).ready(function() {
   });
 
   generateWord();
+
+  // Clue button click
+	$('#clue').click(function() {
+    if (localStorage.getItem("ws-clue") === 0) {
+  		$('#clue').addClass("disabled");
+  	} else {
+      // Subtract 1 of clue power
+    	let oldCluePower = localStorage.getItem("ws-clue");
+    	localStorage.setItem("ws-clue", (parseInt(oldCluePower)) - 1);
+    	$('#clue span').html(localStorage.getItem("ws-clue"));
+  	}
+  });
+
+  // Solve button click
+	$('#solve').click(function() {
+    solveWord();
+
+  	// Subtract 1 of solve power
+  	let oldSolvePower = localStorage.getItem("ws-solve");
+  	localStorage.setItem("ws-solve", (parseInt(oldSolvePower)) - 1);
+  	$('#solve span').html(localStorage.getItem("ws-solve"));
+  });
 });
