@@ -9,6 +9,16 @@ $(document).ready(function() {
   let wsg8 = localStorage.getItem("ws-g8");
   let wsg9 = localStorage.getItem("ws-g9");
   let wsg10 = localStorage.getItem("ws-g10");
+  let wsg10 = localStorage.getItem("ws-g11");
+  let wsg10 = localStorage.getItem("ws-g12");
+  let wsg10 = localStorage.getItem("ws-g13");
+  let wsg10 = localStorage.getItem("ws-g14");
+  let wsg10 = localStorage.getItem("ws-g15");
+  let wsg10 = localStorage.getItem("ws-g16");
+  let wsg10 = localStorage.getItem("ws-g17");
+  let wsg10 = localStorage.getItem("ws-g18");
+  let wsg10 = localStorage.getItem("ws-g19");
+  let wsg10 = localStorage.getItem("ws-g20");
   let wsGold = localStorage.getItem("ws-gold");
 
   // Check if levels are completed
