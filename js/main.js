@@ -22,6 +22,8 @@ $(document).ready(function() {
   let wsGold = localStorage.getItem("ws-gold");
 
   // Check if levels are completed
+
+  /*
   for (let i = 1; i <= 20; i++) {
     let wsgVar = 'wsg' + i;
     let cssId = '#g' + i;
@@ -36,7 +38,8 @@ $(document).ready(function() {
     }
   }
 
-  /*
+  */
+
   if (wsg1 !== null) {
     if (parseInt(wsg1) === 10) {
       $('#g1').addClass('completed');
@@ -96,7 +99,66 @@ $(document).ready(function() {
       $('#g10').addClass('completed');
     }
   }
-  */
+
+  if (wsg11 !== null) {
+    if (parseInt(wsg11) === 10) {
+      $('#g11').addClass('completed');
+    }
+  }
+
+  if (wsg11 !== null) {
+    if (parseInt(wsg11) === 10) {
+      $('#g11').addClass('completed');
+    }
+  }
+
+  if (wsg13 !== null) {
+    if (parseInt(wsg13) === 10) {
+      $('#g13').addClass('completed');
+    }
+  }
+
+  if (wsg14 !== null) {
+    if (parseInt(wsg14) === 10) {
+      $('#g14').addClass('completed');
+    }
+  }
+
+  if (wsg15 !== null) {
+    if (parseInt(wsg15) === 10) {
+      $('#g15').addClass('completed');
+    }
+  }
+
+  if (wsg16 !== null) {
+    if (parseInt(wsg16) === 10) {
+      $('#g16').addClass('completed');
+    }
+  }
+
+  if (wsg17 !== null) {
+    if (parseInt(wsg17) === 10) {
+      $('#g17').addClass('completed');
+    }
+  }
+
+  if (wsg18 !== null) {
+    if (parseInt(wsg18) === 10) {
+      $('#g18').addClass('completed');
+    }
+  }
+
+  if (wsg19 !== null) {
+    if (parseInt(wsg19) === 10) {
+      $('#g19').addClass('completed');
+    }
+  }
+
+  if (wsg20 !== null) {
+    if (parseInt(wsg20) === 10) {
+      $('#g20').addClass('completed');
+    }
+  }
 
   // Display gold amount
   if (wsGold === null) {
