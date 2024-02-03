@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  /*
   let wsg1 = localStorage.getItem("ws-g1");
   let wsg2 = localStorage.getItem("ws-g2");
   let wsg3 = localStorage.getItem("ws-g3");
@@ -19,22 +20,33 @@ $(document).ready(function() {
   let wsg18 = localStorage.getItem("ws-g18");
   let wsg19 = localStorage.getItem("ws-g19");
   let wsg20 = localStorage.getItem("ws-g20");
+  */
   let wsGold = localStorage.getItem("ws-gold");
+
+
+  let wsg = [];
+
+  for (let i = 1; i <= 20; i++) {
+    wsg[i] = localStorage.getItem("ws-g" + i);
+  }
+
 
   // Check if levels are completed
   for (let i = 1; i <= 20; i++) {
     let wsgVar = 'wsg' + i;
     let cssId = '#g' + i;
 
-    console.log(wsgVar);
+    let currentWsg = wsg[i];
+
+    console.log(currentWsg);
     console.log(cssId);
 
-    if ('wsg' + i !== null) {
-      if (parseInt('wsg' + i) === 10) {
-        $('#g' + i).addClass('completed');
+
+    if (currentWsg !== null) {
+      if (parseInt(currentWsg) === 10) {
+        $(cssId).addClass('completed');
       }
     }
-
   }
 
   /*
