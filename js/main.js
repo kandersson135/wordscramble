@@ -21,26 +21,18 @@ $(document).ready(function() {
   let wsg19 = localStorage.getItem("ws-g19");
   let wsg20 = localStorage.getItem("ws-g20");
   */
+  // Declare variables
   let wsGold = localStorage.getItem("ws-gold");
-
-
   let wsg = [];
 
   for (let i = 1; i <= 20; i++) {
     wsg[i] = localStorage.getItem("ws-g" + i);
   }
 
-
   // Check if levels are completed
   for (let i = 1; i <= 20; i++) {
-    let wsgVar = 'wsg' + i;
-    let cssId = '#g' + i;
-
     let currentWsg = wsg[i];
-
-    console.log(currentWsg);
-    console.log(cssId);
-
+    let cssId = '#g' + i;
 
     if (currentWsg !== null) {
       if (parseInt(currentWsg) === 10) {
