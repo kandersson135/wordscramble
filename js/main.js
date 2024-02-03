@@ -29,7 +29,7 @@ $(document).ready(function() {
     console.log(wsgVar);
     console.log(cssId);
 
-    if (window[wsgVar] !== null) {
+    if (wsgVar !== null) {
       if (parseInt(wsgVar) === 10) {
         $(cssId).addClass('completed');
       }
