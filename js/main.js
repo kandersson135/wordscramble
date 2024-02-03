@@ -12,6 +12,18 @@ $(document).ready(function() {
   let wsGold = localStorage.getItem("ws-gold");
 
   // Check if levels are completed
+  for (let i = 1; i <= 20; i++) {
+    let wsgVar = 'wsg' + i;
+    let cssId = '#g' + i;
+
+    if (window[wsgVar] !== null) {
+      if (parseInt(window[wsgVar]) === 10) {
+        $(cssId).addClass('completed');
+      }
+    }
+  }
+
+  /*
   if (wsg1 !== null) {
     if (parseInt(wsg1) === 10) {
       $('#g1').addClass('completed');
@@ -71,6 +83,7 @@ $(document).ready(function() {
       $('#g10').addClass('completed');
     }
   }
+  */
 
   // Display gold amount
   if (wsGold === null) {
@@ -87,7 +100,7 @@ $(document).ready(function() {
   });
 
   // Check if previous level is completed and unlock the next level
-  for (var i = 1; i <= 10; i++) {
+  for (var i = 1; i <= 20; i++) {
     if ($('#g' + i).hasClass('completed')) {
       $('#g' + i).parent().nextAll('.one-fifth').first().find('a').removeClass('locked');
       $('#g' + i).parent().nextAll('.one-fifth').first().find('a').html(i + 1 + '<span>&check;</span>');
@@ -118,6 +131,16 @@ $(document).ready(function() {
         localStorage.removeItem("ws-g8");
         localStorage.removeItem("ws-g9");
         localStorage.removeItem("ws-g10");
+        localStorage.removeItem("ws-g11");
+        localStorage.removeItem("ws-g12");
+        localStorage.removeItem("ws-g13");
+        localStorage.removeItem("ws-g14");
+        localStorage.removeItem("ws-g15");
+        localStorage.removeItem("ws-g16");
+        localStorage.removeItem("ws-g17");
+        localStorage.removeItem("ws-g18");
+        localStorage.removeItem("ws-g19");
+        localStorage.removeItem("ws-g20");
         localStorage.removeItem("ws-gold");
         localStorage.removeItem("ws-clue");
         localStorage.removeItem("ws-scramble");
