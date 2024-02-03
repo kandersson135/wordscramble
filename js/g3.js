@@ -29,23 +29,7 @@ $(document).ready(function() {
 		$("#score span").text(wsGold);
 	}
 
-  /*
   // Set power up count
-  if (localStorage.getItem("ws-clue") === null || localStorage.getItem("ws-clue") <= 0) {
-    $('#clue').addClass("disabled");
-	} else {
-		$('#clue span').html(localStorage.getItem("ws-clue"));
-		$('#clue span').show();
-	}
-
-  if (localStorage.getItem("ws-solve") === null || localStorage.getItem("ws-solve") <= 0) {
-    $('#solve').addClass("disabled");
-	} else {
-		$('#solve span').html(localStorage.getItem("ws-solve"));
-		$('#solve span').show();
-	}
-  */
-
   function checkPowerUps() {
     if (localStorage.getItem("ws-clue") === null || localStorage.getItem("ws-clue") <= 0) {
       $('#clue').addClass("disabled");
@@ -202,20 +186,6 @@ $(document).ready(function() {
 
   // Solve button click
 	$('#solve').click(function() {
-
-    /*
-    if (localStorage.getItem("ws-solve") <= 0) {
-  		$('#solve').addClass("disabled");
-  	} else {
-      solveWord();
-
-    	// Subtract 1 of solve power
-    	let oldSolvePower = localStorage.getItem("ws-solve");
-    	localStorage.setItem("ws-solve", (parseInt(oldSolvePower)) - 1);
-    	$('#solve span').html(localStorage.getItem("ws-solve"));
-  	}
-    */
-
     solveWord();
 
     // Subtract 1 of solve power
