@@ -29,11 +29,12 @@ $(document).ready(function() {
     console.log(wsgVar);
     console.log(cssId);
 
-    if (wsgVar !== null) {
-      if (parseInt(wsgVar) === 10) {
-        $(cssId).addClass('completed');
+    if ('wsg' + i !== null) {
+      if (parseInt('wsg' + i) === 10) {
+        $('#g' + i).addClass('completed');
       }
     }
+
   }
 
   /*
