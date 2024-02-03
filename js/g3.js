@@ -178,11 +178,15 @@ $(document).ready(function() {
 
   // Solve button click
 	$('#solve').click(function() {
-    solveWord();
+    if (localStorage.getItem("ws-solve") === 0) {
+  		$('#solve').addClass("disabled");
+  	} else {
+      solveWord();
 
-  	// Subtract 1 of solve power
-  	let oldSolvePower = localStorage.getItem("ws-solve");
-  	localStorage.setItem("ws-solve", (parseInt(oldSolvePower)) - 1);
-  	$('#solve span').html(localStorage.getItem("ws-solve"));
+    	// Subtract 1 of solve power
+    	let oldSolvePower = localStorage.getItem("ws-solve");
+    	localStorage.setItem("ws-solve", (parseInt(oldSolvePower)) - 1);
+    	$('#solve span').html(localStorage.getItem("ws-solve"));
+  	}
   });
 });
