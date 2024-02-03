@@ -26,6 +26,9 @@ $(document).ready(function() {
     let wsgVar = 'wsg' + i;
     let cssId = '#g' + i;
 
+    console.log(wsgVar);
+    console.log(cssId);
+
     if (window[wsgVar] !== null) {
       if (parseInt(window[wsgVar]) === 10) {
         $(cssId).addClass('completed');
