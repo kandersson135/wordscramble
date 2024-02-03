@@ -22,7 +22,7 @@ body {
   width: 500px;
   margin: 0 auto;
   text-align: center;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 
 h1 {
@@ -352,6 +352,10 @@ div.spacer {clear:both; display:block; height:10px;}
   #game-container,
   #levels {
     width: 95%;
+  }
+
+  #levels {
+    margin-top: 150px;
   }
 
   #word-display {
