@@ -178,7 +178,7 @@ $(document).ready(function() {
 
   // Solve button click
 	$('#solve').click(function() {
-    if (localStorage.getItem("ws-solve") === 0) {
+    if (localStorage.getItem("ws-solve") <= 0) {
   		$('#solve').addClass("disabled");
   	} else {
       solveWord();
