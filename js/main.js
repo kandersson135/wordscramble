@@ -22,8 +22,6 @@ $(document).ready(function() {
   let wsGold = localStorage.getItem("ws-gold");
 
   // Check if levels are completed
-
-  /*
   for (let i = 1; i <= 20; i++) {
     let wsgVar = 'wsg' + i;
     let cssId = '#g' + i;
@@ -38,8 +36,7 @@ $(document).ready(function() {
     }
   }
 
-  */
-
+  /*
   if (wsg1 !== null) {
     if (parseInt(wsg1) === 10) {
       $('#g1').addClass('completed');
@@ -159,6 +156,7 @@ $(document).ready(function() {
       $('#g20').addClass('completed');
     }
   }
+  */
 
   // Display gold amount
   if (wsGold === null) {
