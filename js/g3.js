@@ -186,7 +186,7 @@ $(document).ready(function() {
     	// Subtract 1 of solve power
     	let oldSolvePower = localStorage.getItem("ws-solve");
     	localStorage.setItem("ws-solve", (parseInt(oldSolvePower)) - 1);
-    	$('#solve span').html(localStorage.getItem("ws-solve"));
+    	$('#solve span').html(localStorage.getItem("ws-solve")); 
   	}
   });
 });
