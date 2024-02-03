@@ -30,7 +30,7 @@ $(document).ready(function() {
     console.log(cssId);
 
     if (window[wsgVar] !== null) {
-      if (parseInt(window[wsgVar]) === 10) {
+      if (parseInt(wsgVar) === 10) {
         $(cssId).addClass('completed');
       }
     }
