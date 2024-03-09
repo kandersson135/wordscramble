@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  const words = ['glädje', 'sorg', 'ilska', 'rädsla', 'förvåning', 'lycka', 'ångest', 'skam', 'kärlek', 'avsky'];
+  const words = ['fot', 'haka', 'näsa', 'ögon', 'tumme', 'hals', 'arm', 'mun', 'ben', 'huvud'];
   let wsg14 = localStorage.getItem("ws-g14");
   let wsGold = localStorage.getItem("ws-gold");
   let currentWord;

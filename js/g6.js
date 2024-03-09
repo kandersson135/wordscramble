@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  const words = ['microsoft', 'apple', 'spotify', 'facebook', 'twitter', 'google', 'amazon', 'tiktok', 'instagram', 'netflix'];
+  const words = ['apple', 'spotify', 'facebook', 'twitter', 'google', 'amazon', 'tiktok', 'instagram', 'netflix', 'microsoft'];
   let wsg6 = localStorage.getItem("ws-g6");
   let wsGold = localStorage.getItem("ws-gold");
   let currentWord;
