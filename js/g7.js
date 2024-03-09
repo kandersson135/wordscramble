@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  const words = ['bror', 'mamma', 'syster', 'kusin', 'pappa', 'farmor', 'syssling', 'morfar', 'brylling', 'gammelmormor'];
+  const words = ['bror', 'mamma', 'syster', 'kusin', 'pappa', 'farmor', 'farbror', 'morfar', 'moster', 'gammelmormor'];
   let wsg7 = localStorage.getItem("ws-g7");
   let wsGold = localStorage.getItem("ws-gold");
   let currentWord;
