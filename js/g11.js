@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  const words = ['svart', 'blå', 'orange', 'lila', 'brun', 'grön', 'vit', 'rosa', 'gul', 'röd'];
+  const words = ['svart', 'blå', 'lila', 'röd', 'brun', 'grön', 'vit', 'rosa', 'gul', 'orange'];
   let wsg11 = localStorage.getItem("ws-g11");
   let wsGold = localStorage.getItem("ws-gold");
   let currentWord;
