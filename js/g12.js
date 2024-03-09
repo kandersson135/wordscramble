@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  const words = ['mössa', 'tröja', 'strumpor', 'jeans', 'jacka', 'linne', 'klänning', 'shorts', 'badbyxor', 'vantar'];
+  const words = ['mössa', 'tröja', 'jeans', 'jacka', 'linne', 'shorts', 'strumpor', 'klänning', 'badbyxor', 'vantar'];
   let wsg12 = localStorage.getItem("ws-g12");
   let wsGold = localStorage.getItem("ws-gold");
   let currentWord;
