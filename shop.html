@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="theme-color" content="#E0C3FC">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <link rel="apple-touch-icon" href="img/webapp-icon.png">
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+  <title>Word Scramble</title>
+
+  <!-- json -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- css -->
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+  <h1>Word Scramble</h1>
+
+  <div id="levels">
+    <a href="index.html" id="top-btn">< Tillbaka</a>
+    <div id="score"><img src="img/coin.png"> <span></span></div>
+
+    <div id="shop-title">Poängbutik</div>
+
+    <div class="one-fifth">
+      <div class="shop-item clue">
+        <p>Ledtråd</p>
+        <span><img src="img/light-bulb.png"></span>
+        <p><img src="img/coin.png"> 5</p>
+      </div>
+    </div>
+    <div class="one-fifth solve">
+      <div class="shop-item">
+        <p>Lösning</p>
+        <span><img src="img/loupe.png"></span>
+        <p><img src="img/coin.png"> 10</p>
+      </div>
+    </div>
+    <div class="one-fifth">
+      <div class="shop-item">
+        <p>Snart</p>
+        <span><img src="img/padlock.png"></span>
+        <p><img src="img/coin.png"> ??</p>
+      </div>
+    </div>
+    <div class="one-fifth">
+      <div class="shop-item">
+        <p>Snart</p>
+        <span><img src="img/padlock.png"></span>
+        <p><img src="img/coin.png"> ??</p>
+      </div>
+    </div>
+    <div class="one-fifth last">
+      <div class="shop-item">
+        <p>Snart</p>
+        <span><img src="img/padlock.png"></span>
+        <p><img src="img/coin.png"> ??</p>
+      </div>
+    </div>
+  </div><!-- end game container -->
+
+ <div id="version-info">
+   <p>Version: 0.0.7</p>
+ </div><!-- end version info -->
+
+ <!-- js -->
+ <script src="js/jquery-3.6.0.min.js"></script>
+ <script src="js/sweetalert.min.js"></script>
+ <script src="js/shop.js"></script>
+</body>
+</html>

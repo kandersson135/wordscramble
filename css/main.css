@@ -1,0 +1,408 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+html {
+  background-color: #8EC5FC;
+  background-image: linear-gradient(0deg, #8EC5FC 0%, #E0C3FC 100%);
+  height: 100%;
+}
+
+body {
+  font-family: 'Concert One', cursive;
+}
+
+#game-container {
+  width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 100px;
+}
+
+#levels {
+  width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 50px;
+}
+
+h1 {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 48px;
+  font-family: 'Lobster', cursive;
+  font-weight: 400;
+  text-align: center;
+  margin: 0;
+  text-shadow: 0px 2px rgba(50, 50, 50, 0.1);
+}
+
+#top-btn {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  box-shadow: 1px 1px rgba(255, 255, 255, 0.8), 2px 2px rgba(255, 255, 255, 0.8);
+  color: rgba(50, 50, 50, 0.8);
+  font-size: 24px;
+  padding: 5px 10px;
+  position: absolute;
+  left: 10px;
+  text-decoration: none;
+  top: 10px;
+}
+
+#top-btn:active {
+  box-shadow: none;
+  top: 12px;
+  left: 12px;
+}
+
+#score {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  box-shadow: 1px 1px rgba(255, 255, 255, 0.8), 2px 2px rgba(255, 255, 255, 0.8);
+  color: rgba(50, 50, 50, 0.8);
+  font-size: 24px;
+  padding: 5px 10px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 75px;
+}
+
+#score img {
+  position: relative;
+  top: 4px;
+  width: 24px;
+}
+
+#word-display {
+  font-family: 'Concert One', cursive;
+  font-size: 36px;
+  margin: 20px 0;
+}
+
+#level-display {
+  color: rgba(50, 50, 50, 0.6);
+  font-size: 24px;
+}
+
+#input-container {
+  margin-bottom: 20px;
+}
+
+#user-input {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  box-shadow: 1px 1px rgba(255, 255, 255, 0.8), 2px 2px rgba(255, 255, 255, 0.8);
+  color: #353229;
+  font-family: 'Concert One', cursive;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px;
+  text-transform: uppercase;
+  width: 250px;
+}
+
+#user-input:focus {
+  outline: none;
+}
+
+#check-btn {
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  display: none;
+}
+
+.letter {
+  animation: fall 0.3s ease-in-out;
+  background: #f8e8ce;
+  border-radius: 4px;
+  box-shadow: 1px 1px #d6b791, 2px 2px #d6b791, 3px 3px #d6b791, -5px -5px 2px 2px rgba(150, 150, 150, 0.1);
+  color: #353229;
+  display: inline-block;
+  font-weight: 500;
+  height: 50px;
+  line-height: 50px;
+  margin: 7px;
+  text-transform: uppercase;
+  width: 50px;
+}
+
+.level {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  box-shadow: 0px 4px rgba(255, 255, 255, 0.5);
+  color: rgba(50, 50, 50, 0.8);
+  display: inline-block;
+  font-size: 32px;
+  height: 75px;
+  line-height: 75px;
+  margin-bottom: 15px;
+  text-decoration: none;
+  position: relative;
+  width: 100%;
+}
+
+.level span {
+  background: rgba(162,230,101, 0.8);
+  border: 1px solid #88df39;
+  border-radius: 50px;
+  color: #fff;
+  display: none;
+  font-size: 16px;
+  height: 20px;
+  line-height: 20px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 20px;
+}
+
+.level:active {
+  box-shadow: none;
+  position: relative;
+  top: 4px;
+}
+
+.completed {pointer-events: none;}
+.completed span {display: block;}
+.locked {opacity: 0.4; pointer-events: none;}
+.locked img {margin-top: 25px; width: 32px;}
+
+/* menu */
+#menu {
+  margin-top: 50px;
+  text-align: center;
+}
+
+#menu li {
+  display: inline-block;
+  list-style-type: none;
+  margin-right: 20px;
+}
+
+#menu li a {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+  text-decoration: none;
+}
+
+/* version info */
+#version-info {
+  bottom: 0px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 8px;
+  position: absolute;
+}
+
+#game-buttons {margin-top:50px; margin-left: -30px;}
+#game-buttons li {display:inline-block; margin-right:10px;}
+#game-buttons li:last-child {margin-right:0;}
+#game-buttons li a img {height:60%; position: relative; top: 5px; width:auto;}
+#game-buttons li a {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  box-shadow: 0px 3px rgba(255, 255, 255, 0.5);
+  color: rgba(50, 50, 50, 0.8);
+	display:block;
+	height:40px;
+  line-height: 40px;
+	position:relative;
+  text-decoration: none;
+	width: 100px;
+}
+#game-buttons li a span {
+  background:#ffcc00;
+  box-shadow:inset 0 10px 1px 0 #ffd948;
+  border:1px solid #cda400;
+  border-radius:50px;
+  color:#fff;
+  display: none;
+	font-size:14px;
+  height: 20px;
+  line-height: 20px;
+	position:absolute;
+	right:-10px;
+	top:-10px;
+  width: 20px;
+}
+#game-buttons li a:active {box-shadow:none; position:relative; top:3px;}
+.disabled {cursor:default; pointer-events:none; opacity: 0.4;}
+
+/* SHOP */
+.shop-item {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  box-shadow: 0px 4px rgba(255, 255, 255, 0.5);
+  color: rgba(50, 50, 50, 0.8);
+  cursor: pointer;
+}
+
+.shop-item span img {
+  background: rgba(50, 50, 50, 0.1);
+  border-radius: 5px;
+  margin: 5px 0;
+  padding: 10px 10px;
+  width: 32px;
+}
+
+.shop-item p img {position:relative; top:2px; width:16px;}
+.shop-item p:first-child {margin-top: 5px; margin-bottom: 5px;}
+.shop-item p:last-child {margin-top: 5px; margin-bottom: 5px;}
+
+.shop-item:active {
+  box-shadow: none;
+  position: relative;
+  top: 4px;
+}
+
+#shop-title {
+  color: rgba(50, 50, 50, 0.6);
+  font-size: 24px;
+  margin-bottom: 20px;
+  margin-top: -50px;
+}
+
+/* MODAL BOX */
+.swal-modal {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  box-shadow: 0px 3px rgba(255, 255, 255, 0.8);
+}
+
+.swal-title {
+  color: rgba(50, 50, 50, 0.8);
+  margin-top:-5px !important;
+}
+
+.swal-text {
+  color: rgba(50, 50, 50, 0.8);
+  font-size:18px;
+}
+
+.swal-button {
+	background: rgba(50, 50, 50, 0.8);
+  border:2px solid #fff;
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size:18px;
+  font-family: 'Concert One', cursive;
+  padding:5px 20px;
+}
+.swal-button:focus {box-shadow:none;}
+.swal-button:hover {background: rgba(50, 50, 50, 0.9) !important;}
+.swal-button:active {background: rgba(50, 50, 50, 0.9); box-shadow:none; position:relative; top:2px;}
+
+/* SPACER */
+div.spacer {clear:both; display:block; height:10px;}
+
+/* COLUMNS */
+.one-half {width:48%;}
+.one-third {width:30.66%;}
+.two-third {width:65.33%;}
+.one-fourth {width:22%;}
+.three-fourth {width:74%;}
+.one-fifth {width:16.8%;}
+.two-fifth {width:37.6%;}
+.three-fifth {width:58.4%;}
+.four-fifth {width:67.2%;}
+.one-sixth {width:13.33%;}
+.five-sixth {width:82.67%;}
+.one-half, .one-third, .two-third, .three-fourth, .one-fourth, .one-fifth, .two-fifth, .three-fifth, .four-fifth, .one-sixth, .five-sixth {position:relative; margin-right:4%; float:left;}
+.last {margin-right:0 !important; clear:right;}
+
+/* shake animation */
+.shake {animation: shake 0.3s; animation-iteration-count: 1;}
+
+/* animations */
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {display: none;}
+
+  #game-container,
+  #levels {
+    width: 95%;
+  }
+
+  #levels {
+    margin-top: 150px;
+  }
+
+  #word-display {
+    font-size: 24px;
+  }
+
+  #user-input {
+    font-family: Arial, sans-serif;
+  }
+
+  #top-btn, #score {
+    height: 30px;
+    line-height: 20px;
+  }
+
+  #game-buttons li a {
+    line-height:35px;
+  }
+
+  .swal-button {
+    height: 40px;
+    line-height: 15px;
+    padding-top: 0;
+  }
+
+  .letter {
+    height: 30px;
+    line-height: 20px;
+    margin: 5px;
+    width: 30px;
+  }
+
+  .level {
+    font-size: 18px;
+    height: 50px;
+    line-height: 50px;
+    width: 95%;
+  }
+
+  #game-buttons li a span {line-height: 15px;}
+
+  .level img {width: 24px; margin-top: 15px;}
+  .level span {line-height: 15px;}
+
+  .shop-item span img {margin-bottom: 0; padding: 5px 5px; width: 24px;}
+  .shop-item p {font-size: 12px;}
+  .shop-item p img {position:relative; top:2px; width:16px;}
+  .shop-item p:first-child {margin-top: 5px; margin-bottom: 5px;}
+  .shop-item p:last-child {margin-top: 5px; margin-bottom: 5px;}
+}
