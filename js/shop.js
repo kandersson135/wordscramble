@@ -49,7 +49,7 @@ $(document).ready(function() {
 
   // Buy shuffle
   $('.shuffle').click(function() {
-    swal("Under konstruktion", "Denna knapp är fortfarande under konstruktion.");
+    //(swal("Under konstruktion", "Denna knapp är fortfarande under konstruktion.");
 
     $('.shuffle').click(function() {
       if (wsGold < 5) {
