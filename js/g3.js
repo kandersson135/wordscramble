@@ -44,6 +44,13 @@ $(document).ready(function() {
   		$('#solve span').html(localStorage.getItem("ws-solve"));
   		$('#solve span').show();
   	}
+
+    if (localStorage.getItem("ws-shuffle") === null || localStorage.getItem("ws-shuffle") <= 0) {
+      $('#shuffle').addClass("disabled");
+  	} else {
+  		$('#shuffle span').html(localStorage.getItem("ws-shuffle"));
+  		$('#shuffle span').show();
+  	}
   }
 
   // Call the function initially
@@ -192,5 +199,15 @@ $(document).ready(function() {
     let oldSolvePower = localStorage.getItem("ws-solve");
     localStorage.setItem("ws-solve", (parseInt(oldSolvePower)) - 1);
     $('#solve span').html(localStorage.getItem("ws-solve"));
+  });
+
+  // Shuffle button click
+	$('#shuffle').click(function() {
+    generateWord();
+
+    // Subtract 1 of shuffle power
+    let oldShufflePower = localStorage.getItem("ws-shuffle");
+    localStorage.setItem("ws-shuffle", (parseInt(oldShufflePower)) - 1);
+    $('#shuffle span').html(localStorage.getItem("ws-shuffle"));
   });
 });

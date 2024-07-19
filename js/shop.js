@@ -49,8 +49,6 @@ $(document).ready(function() {
 
   // Buy shuffle
   $('.shuffle').click(function() {
-    //(swal("Under konstruktion", "Denna knapp är fortfarande under konstruktion.");
-
     $('.shuffle').click(function() {
       if (wsGold < 5) {
       	swal("Köpa blanda?", "Inte nog med pengar!");
