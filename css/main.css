@@ -9,6 +9,7 @@ html {
 
 body {
   font-family: 'Concert One', cursive;
+  overscroll-behavior: none; /* prevent pull to refresh on android */
 }
 
 #game-container {
