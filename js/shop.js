@@ -55,7 +55,23 @@ $(document).ready(function() {
     	swal({
         title: "Köpa blanda?",
         text: "Vill du köpa en blanda?",
-        buttons: true,
+        //buttons: true,
+        buttons: {
+          cancel: {
+            text: "Avbryt",
+            value: null,
+            visible: true,
+            className: "",
+            closeModal: true,
+          },
+          confirm: {
+            text: "Ja, köp",
+            value: true,
+            visible: true,
+            className: "",
+            closeModal: true,
+          },
+        },
       })
       .then((willBuy) => {
         if (willBuy) {
@@ -114,7 +130,23 @@ $(document).ready(function() {
     	swal({
         title: "Köpa lösning?",
         text: "Vill du köpa en lösning?",
-        buttons: true,
+        //buttons: true,
+        buttons: {
+          cancel: {
+            text: "Avbryt",
+            value: null,
+            visible: true,
+            className: "",
+            closeModal: true,
+          },
+          confirm: {
+            text: "Ja, köp",
+            value: true,
+            visible: true,
+            className: "",
+            closeModal: true,
+          },
+        },
       })
       .then((willBuy) => {
         if (willBuy) {
