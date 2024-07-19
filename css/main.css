@@ -366,13 +366,22 @@ div.spacer {clear:both; display:block; height:10px;}
     /* font-family: Arial, sans-serif; */
   }
 
-  #top-btn, #score {
+  #top-btn,
+  #score {
     height: 30px;
     line-height: 30px;
   }
 
+  #game-buttons li {
+    margin-bottom: 15px;
+  }
+
   #game-buttons li a {
     line-height: 40px;
+  }
+
+  #game-buttons li a span {
+    line-height: 18px;
   }
 
   .swal-button {
@@ -394,8 +403,6 @@ div.spacer {clear:both; display:block; height:10px;}
     line-height: 50px;
     width: 95%;
   }
-
-  #game-buttons li a span {line-height: 18px;}
 
   .level img {width: 24px; margin-top: 15px;}
   .level span {line-height: 15px;}
