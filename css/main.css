@@ -363,16 +363,16 @@ div.spacer {clear:both; display:block; height:10px;}
   }
 
   #user-input {
-    font-family: Arial, sans-serif;
+    /* font-family: Arial, sans-serif; */
   }
 
   #top-btn, #score {
     height: 30px;
-    line-height: 20px;
+    line-height: 30px;
   }
 
   #game-buttons li a {
-    line-height:35px;
+    line-height: 40px;
   }
 
   .swal-button {
@@ -383,7 +383,7 @@ div.spacer {clear:both; display:block; height:10px;}
 
   .letter {
     height: 30px;
-    line-height: 20px;
+    line-height: 30px;
     margin: 5px;
     width: 30px;
   }
