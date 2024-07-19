@@ -14,7 +14,7 @@ $(document).ready(function() {
 	}
 
   // Buy clue
-  $('.clue').click(function() {
+  $('.cluesss').click(function() {
     if (wsGold < 5) {
     	swal("Köpa ledtråd?", "Inte nog med pengar!");
     } else {
