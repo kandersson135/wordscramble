@@ -195,7 +195,22 @@ $(document).ready(function() {
     swal({
       title: "Återställ?",
       text: "Vill du verkligen återställa spelet?",
-      buttons: true,
+      buttons: {
+        cancel: {
+          text: "Avbryt",
+          value: null,
+          visible: true,
+          className: "",
+          closeModal: true,
+        },
+        confirm: {
+          text: "Ja, återställ",
+          value: true,
+          visible: true,
+          className: "",
+          closeModal: true,
+        },
+      },
     })
     .then((willReset) => {
       if (willReset) {
