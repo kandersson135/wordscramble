@@ -1,6 +1,6 @@
 async function fetchManifest() {
   try {
-    const response = await fetch('../manifest.json'); // Ensure this path matches your manifest file location
+    const response = await fetch('manifest.json'); // Ensure this path matches your manifest file location
     const manifest = await response.json();
     return manifest.version;
   } catch (error) {
