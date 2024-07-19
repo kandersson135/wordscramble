@@ -14,7 +14,10 @@ $(document).ready(function() {
 	}
 
   // Buy clue
-  $('.cluesss').click(function() {
+  $('.clue').click(function() {
+    swal("Under konstruktion", "Denna knapp är fortfarande under konstruktion.");
+
+    /*
     if (wsGold < 5) {
     	swal("Köpa ledtråd?", "Inte nog med pengar!");
     } else {
@@ -41,6 +44,7 @@ $(document).ready(function() {
         }
       });
     }
+    */
   });
 
   // Buy scramble
