@@ -221,7 +221,7 @@ $(document).ready(function() {
         localStorage.removeItem("ws-g20");
         localStorage.removeItem("ws-gold");
         localStorage.removeItem("ws-clue");
-        localStorage.removeItem("ws-scramble");
+        localStorage.removeItem("ws-shuffle");
         localStorage.removeItem("ws-solve");
       	location.reload();
       }
