@@ -56,6 +56,12 @@ h1 {
   left: 12px;
 }
 
+#top-btn img {
+  position: relative;
+  top: 4px;
+  width: 24px;
+}
+
 #score {
   background: rgba(255, 255, 255, 0.8);
   border: 2px solid rgba(255, 255, 255, 0.8);
@@ -175,6 +181,7 @@ h1 {
 
 /* menu */
 #menu {
+  margin-left: -20px;
   margin-top: 50px;
   text-align: center;
 }
