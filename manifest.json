@@ -1,6 +1,7 @@
-{
+z{
   "name": "Word Scramble",
   "short_name": "Word Scramble",
+  "version": "0.0.9",
   "description": "Ett klurigt ordspel med olika nivåer.",
   "icons": [
     {
