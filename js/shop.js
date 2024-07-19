@@ -54,7 +54,7 @@ $(document).ready(function() {
     } else {
     	swal({
         title: "Köpa blanda?",
-        text: "Vill du löpa en blanda?",
+        text: "Vill du köpa en blanda?",
         buttons: true,
       })
       .then((willBuy) => {
@@ -113,7 +113,7 @@ $(document).ready(function() {
     } else {
     	swal({
         title: "Köpa lösning?",
-        text: "Vill du löpa en lösning?",
+        text: "Vill du köpa en lösning?",
         buttons: true,
       })
       .then((willBuy) => {
