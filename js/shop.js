@@ -97,13 +97,13 @@ $(document).ready(function() {
             localStorage.setItem("ws-solve", 1);
           	localStorage.setItem("ws-gold", parseInt(wsGold) - 10);
           	$("#score span").text(wsGold - 10);
-          	//purchase.play();
+          	purchase.play();
             setTimeout(function(){location.reload();}, 1000);
           } else {
             localStorage.setItem("ws-solve", parseInt(wsSolve) + 1);
           	localStorage.setItem("ws-gold", parseInt(wsGold) - 10);
           	$("#score span").text(wsGold - 10);
-          	//purchase.play();
+          	purchase.play();
           	setTimeout(function(){location.reload();}, 1000);
           }
         }
