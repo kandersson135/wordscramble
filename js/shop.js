@@ -47,8 +47,11 @@ $(document).ready(function() {
     */
   });
 
-  // Buy scramble
-  $('.scramble').click(function() {
+  // Buy shuffle
+  $('.shuffle').click(function() {
+    swal("Under konstruktion", "Denna knapp är fortfarande under konstruktion.");
+
+    /*
     if (wsGold <= 5) {
     	swal("Köpa blanda?", "Inte nog med pengar!");
     } else {
@@ -60,13 +63,13 @@ $(document).ready(function() {
       .then((willBuy) => {
         if (willBuy) {
           if (wsScramble === null || wsScramble === 0) {
-            localStorage.setItem("ws-scramble", 1);
+            localStorage.setItem("ws-shuffle", 1);
           	localStorage.setItem("ws-gold", parseInt(wsGold) - 5);
           	$("#score span").text(wsGold - 5);
           	purchase.play();
             setTimeout(function(){location.reload();}, 1000);
           } else {
-            localStorage.setItem("ws-scramble", parseInt(wsScramble) + 1);
+            localStorage.setItem("ws-shuffle", parseInt(wsScramble) + 1);
           	localStorage.setItem("ws-gold", parseInt(wsGold) - 5);
           	$("#score span").text(wsGold - 5);
           	purchase.play();
@@ -75,6 +78,7 @@ $(document).ready(function() {
         }
       });
     }
+    */
   });
 
   // Buy solve
