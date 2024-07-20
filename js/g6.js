@@ -75,6 +75,7 @@ $(document).ready(function() {
     const scrambledWord = scramble(currentWord);
     const wordDisplay = document.getElementById('word-display');
     wordDisplay.innerHTML = '';
+    index = 0;
 
     tiles.play();
 
@@ -123,13 +124,15 @@ $(document).ready(function() {
   }
 
   function clue() {
+    $('#user-input').focus();
+
     if (index < currentWord.length) {
       $("#user-input").val(function(i, oldVal) {
         return oldVal + currentWord[index];
       });
       index++;
     } else {
-      alert("All letters are revealed!");
+      swal("Ledtråd", "Alla bokstäver är avslöjade!");
     }
   }
 

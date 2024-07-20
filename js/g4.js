@@ -5,6 +5,7 @@ $(document).ready(function() {
   let currentWord;
   let currentLevel;
   let score;
+  let index = 0;
   const success = new Audio('audio/success.mp3');
   const fail = new Audio('audio/wronganswer.mp3');
   const tiles = new Audio('audio/tiles.mp3');
@@ -74,6 +75,7 @@ $(document).ready(function() {
     const scrambledWord = scramble(currentWord);
     const wordDisplay = document.getElementById('word-display');
     wordDisplay.innerHTML = '';
+    index = 0;
 
     tiles.play();
 
@@ -107,6 +109,19 @@ $(document).ready(function() {
     $('#user-input').focus();
     //$("#user-input").attr("placeholder", "Gissa ordet");
     $('#user-input').val(currentWord);
+  }
+
+  function clue() {
+    $('#user-input').focus();
+
+    if (index < currentWord.length) {
+      $("#user-input").val(function(i, oldVal) {
+        return oldVal + currentWord[index];
+      });
+      index++;
+    } else {
+      swal("Ledtråd", "Alla bokstäver är avslöjade!");
+    }
   }
 
   function scramble(word) {
@@ -182,14 +197,12 @@ $(document).ready(function() {
 
   // Clue button click
 	$('#clue').click(function() {
-    if (localStorage.getItem("ws-clue") === 0) {
-  		$('#clue').addClass("disabled");
-  	} else {
-      // Subtract 1 of clue power
-    	let oldCluePower = localStorage.getItem("ws-clue");
-    	localStorage.setItem("ws-clue", (parseInt(oldCluePower)) - 1);
-    	$('#clue span').html(localStorage.getItem("ws-clue"));
-  	}
+    clue();
+
+    // Subtract 1 of clue power
+    let oldCluePower = localStorage.getItem("ws-clue");
+    localStorage.setItem("ws-clue", (parseInt(oldCluePower)) - 1);
+    $('#clue span').html(localStorage.getItem("ws-clue"));
   });
 
   // Solve button click
