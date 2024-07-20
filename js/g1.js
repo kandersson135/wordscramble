@@ -196,7 +196,7 @@ $(document).ready(function() {
 	$('#clue').click(function() {
     clue();
 
-    // Subtract 1 of solve power
+    // Subtract 1 of clue power
     let oldCluePower = localStorage.getItem("ws-clue");
     localStorage.setItem("ws-clue", (parseInt(oldCluePower)) - 1);
     $('#clue span').html(localStorage.getItem("ws-clue"));
