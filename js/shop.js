@@ -54,8 +54,7 @@ $(document).ready(function() {
     } else {
     	swal({
         title: "Köpa blanda?",
-        text: "Vill du köpa en blanda?",
-        //buttons: true,
+        text: "Vill du köpa för 2 mynt?",
         buttons: {
           cancel: {
             text: "Avbryt",
@@ -129,7 +128,7 @@ $(document).ready(function() {
     } else {
     	swal({
         title: "Köpa lösning?",
-        text: "Vill du köpa en lösning?",
+        text: "Vill du köpa för 10 mynt?",
         //buttons: true,
         buttons: {
           cancel: {
