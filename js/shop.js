@@ -15,15 +15,14 @@ $(document).ready(function() {
 
   // Buy clue
   $('.clue').click(function() {
-    swal("Under konstruktion", "Denna knapp är fortfarande under konstruktion.");
+    //swal("Under konstruktion", "Denna knapp är fortfarande under konstruktion.");
 
-    /*
     if (wsGold < 5) {
     	swal("Köpa ledtråd?", "Inte nog med pengar!");
     } else {
     	swal({
         title: "Köpa ledtråd?",
-        text: "Vill du köpa en ledtråd?",
+        text: "Vill du köpa för 5 mynt?",
         buttons: true,
       })
       .then((willBuy) => {
@@ -44,7 +43,6 @@ $(document).ready(function() {
         }
       });
     }
-    */
   });
 
   // Buy shuffle

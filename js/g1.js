@@ -5,6 +5,7 @@ $(document).ready(function() {
   let currentWord;
   let currentLevel;
   let score;
+  let index = 0;
   const success = new Audio('audio/success.mp3');
   const fail = new Audio('audio/wronganswer.mp3');
   const tiles = new Audio('audio/tiles.mp3');
@@ -109,6 +110,17 @@ $(document).ready(function() {
     $('#user-input').val(currentWord);
   }
 
+  function clue() {
+    if (index < currentWord.length) {
+      $("#user-input").val(function(i, oldVal) {
+        return oldVal + currentWord[index];
+      });
+      index++;
+    } else {
+      alert("All letters are revealed!");
+    }
+  }
+
   function scramble(word) {
     let scrambled = '';
     const wordArray = word.split('');
@@ -182,14 +194,12 @@ $(document).ready(function() {
 
   // Clue button click
 	$('#clue').click(function() {
-    if (localStorage.getItem("ws-clue") === 0) {
-  		$('#clue').addClass("disabled");
-  	} else {
-      // Subtract 1 of clue power
-    	let oldCluePower = localStorage.getItem("ws-clue");
-    	localStorage.setItem("ws-clue", (parseInt(oldCluePower)) - 1);
-    	$('#clue span').html(localStorage.getItem("ws-clue"));
-  	}
+    clue();
+
+    // Subtract 1 of solve power
+    let oldCluePower = localStorage.getItem("ws-clue");
+    localStorage.setItem("ws-clue", (parseInt(oldCluePower)) - 1);
+    $('#clue span').html(localStorage.getItem("ws-clue"));
   });
 
   // Solve button click
