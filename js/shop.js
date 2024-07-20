@@ -49,7 +49,7 @@ $(document).ready(function() {
 
   // Buy shuffle
   $('.shuffle').click(function() {
-    if (wsGold < 5) {
+    if (wsGold < 2) {
     	swal("Köpa blanda?", "Inte nog med pengar!");
     } else {
     	swal({
@@ -77,14 +77,14 @@ $(document).ready(function() {
         if (willBuy) {
           if (wsShuffle === null || wsShuffle === 0) {
             localStorage.setItem("ws-shuffle", 1);
-          	localStorage.setItem("ws-gold", parseInt(wsGold) - 5);
-          	$("#score span").text(wsGold - 5);
+          	localStorage.setItem("ws-gold", parseInt(wsGold) - 2);
+          	$("#score span").text(wsGold - 2);
           	purchase.play();
             setTimeout(function(){location.reload();}, 1000);
           } else {
             localStorage.setItem("ws-shuffle", parseInt(wsShuffle) + 1);
-          	localStorage.setItem("ws-gold", parseInt(wsGold) - 5);
-          	$("#score span").text(wsGold - 5);
+          	localStorage.setItem("ws-gold", parseInt(wsGold) - 2);
+          	$("#score span").text(wsGold - 2);
           	purchase.play();
           	setTimeout(function(){location.reload();}, 1000);
           }

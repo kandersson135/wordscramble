@@ -245,6 +245,6 @@ $(document).ready(function() {
 
   // Credits button click
   $('#credits-button').click(function() {
-    swal("Om spelet", "Spelet är skapat av Kim Andersson.\nIkoner är hämtade från Flaticon.com");
+    swal("Om spelet", "Spelet är skapat av Kim Andersson.\nIkoner är hämtade från flaticon.com");
   });
 });
