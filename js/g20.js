@@ -105,7 +105,8 @@ $(document).ready(function() {
     }
 
     $('#user-input').focus();
-    $("#user-input").attr("placeholder", "Gissa ordet");
+    //$("#user-input").attr("placeholder", "Gissa ordet");
+    $('#user-input').val(currentWord);
   }
 
   function scramble(word) {
