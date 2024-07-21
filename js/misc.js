@@ -5,7 +5,7 @@ $(document).ready(function() {
   versionElement.text("Version: 0.1.5");
 
   // Play audio on click or tap
-	$(".shop-item, .get-href").click(function() {
+	$(".shop-item, .get-href, #game-buttons li a").click(function() {
 	  // Play click sound
 		clickSound.play();
 	});
