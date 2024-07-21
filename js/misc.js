@@ -2,7 +2,7 @@ $(document).ready(function() {
   var clickSound = new Audio("audio/button.mp3");
   clickSound.volume = 0.3;
   var versionElement = $('#version-info p');
-  versionElement.text("Version: 0.1.3");
+  versionElement.text("Version: 0.1.5");
 
   // Play audio on click or tap
 	$(".shop-item, .get-href").click(function() {
