@@ -312,12 +312,12 @@ h1 {
 
 .swal-button {
 	background: rgba(50, 50, 50, 0.8);
-  border:2px solid #fff;
+  border: 2px solid #fff;
   border-radius: 5px;
   color: rgba(255, 255, 255, 0.8);
-  font-size:18px;
+  font-size: 18px;
   font-family: 'Concert One', cursive;
-  padding:5px 20px;
+  padding: 7px 20px;
 }
 .swal-button:focus {box-shadow:none;}
 .swal-button:hover {background: rgba(50, 50, 50, 0.9) !important;}
