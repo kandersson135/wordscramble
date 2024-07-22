@@ -20,7 +20,6 @@ $(document).ready(function() {
 	});
 
 	// Fade in body
-	$('body').hide();
 	$('body').fadeIn(1000);
 });
 

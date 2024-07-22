@@ -8,6 +8,7 @@ html {
 }
 
 body {
+  display: none;
   font-family: 'Concert One', cursive;
   overscroll-behavior: none; /* prevent pull to refresh on android */
   user-select: none; /* prevent tap to select on phones */
