@@ -61,10 +61,10 @@ $(document).ready(function() {
   // Buy shuffle
   $('.shuffle').click(function() {
     if (wsGold < 2) {
-    	swal("Köpa blanda?", "Inte nog med pengar!");
+    	swal("Köpa blandning?", "Inte nog med pengar!");
     } else {
     	swal({
-        title: "Köpa blanda?",
+        title: "Köpa blandning?",
         text: "Vill du köpa för 2 mynt?",
         buttons: {
           cancel: {
