@@ -31,28 +31,50 @@ $(document).ready(function() {
 	}
 
   // Set power up count
+  // function checkPowerUps() {
+  //   if (localStorage.getItem("ws-clue") === null || localStorage.getItem("ws-clue") <= 0) {
+  //     $('#clue').addClass("disabled");
+  // 	} else {
+  // 		$('#clue span').html(localStorage.getItem("ws-clue"));
+  // 		$('#clue span').show();
+  // 	}
+  //
+  //   if (localStorage.getItem("ws-solve") === null || localStorage.getItem("ws-solve") <= 0) {
+  //     $('#solve').addClass("disabled");
+  // 	} else {
+  // 		$('#solve span').html(localStorage.getItem("ws-solve"));
+  // 		$('#solve span').show();
+  // 	}
+  //
+  //   if (localStorage.getItem("ws-shuffle") === null || localStorage.getItem("ws-shuffle") <= 0) {
+  //     $('#shuffle').addClass("disabled");
+  // 	} else {
+  // 		$('#shuffle span').html(localStorage.getItem("ws-shuffle"));
+  // 		$('#shuffle span').show();
+  // 	}
+  // }
+
   function checkPowerUps() {
-    if (localStorage.getItem("ws-clue") === null || localStorage.getItem("ws-clue") <= 0) {
-      $('#clue').addClass("disabled");
-  	} else {
-  		$('#clue span').html(localStorage.getItem("ws-clue"));
-  		$('#clue span').show();
-  	}
+    // Load the inventory (or an empty object if not set)
+    const inventory = JSON.parse(localStorage.getItem("ws-inventory") || "{}");
 
-    if (localStorage.getItem("ws-solve") === null || localStorage.getItem("ws-solve") <= 0) {
-      $('#solve').addClass("disabled");
-  	} else {
-  		$('#solve span').html(localStorage.getItem("ws-solve"));
-  		$('#solve span').show();
-  	}
+    // List all power-ups you want to check
+    const powerUps = ["clue", "solve", "shuffle"];
 
-    if (localStorage.getItem("ws-shuffle") === null || localStorage.getItem("ws-shuffle") <= 0) {
-      $('#shuffle').addClass("disabled");
-  	} else {
-  		$('#shuffle span').html(localStorage.getItem("ws-shuffle"));
-  		$('#shuffle span').show();
-  	}
+    powerUps.forEach(key => {
+      const count = Number(inventory[key]) || 0; // 0 if undefined or NaN
+      const $el = $("#" + key); // e.g. #clue, #solve, #shuffle
+
+      if (count <= 0) {
+        $el.addClass("disabled");
+        $el.find("span").hide();     // hide the counter
+      } else {
+        $el.removeClass("disabled");
+        $el.find("span").text(count).show(); // show how many the player has
+      }
+    });
   }
+
 
   // Call the function initially
   checkPowerUps();
