@@ -1,226 +1,201 @@
-$(document).ready(function() {
-  const words = ['bror', 'mamma', 'syster', 'kusin', 'pappa', 'farmor', 'farbror', 'morfar', 'moster', 'gammelmormor'];
-  let wsg7 = localStorage.getItem("ws-g7");
-  let wsGold = localStorage.getItem("ws-gold");
-  let currentWord;
-  let currentLevel;
-  let score;
-  let index = 0;
-  const success = new Audio('audio/success.mp3');
-  const fail = new Audio('audio/wronganswer.mp3');
-  const tiles = new Audio('audio/tiles.mp3');
-  success.volume = 0.3;
-  fail.volume = 0.3;
-  tiles.volume = 0.3;
+$(function () {
+  // ========= Config =========
+  const WORDS = ['bror', 'mamma', 'syster', 'kusin', 'pappa', 'farmor', 'farbror', 'morfar', 'moster', 'gammelmormor'];
+  const LVL_KEY = "ws-g7";          // level progress for this stage
+  const GOLD_KEY = "ws-gold";       // coin score
+  const INVENTORY_KEY = "ws-inventory";
+  const POWER_KEYS = ["clue", "solve", "shuffle"];
 
-  // Get current level
-  if (wsg7 === null) {
-    currentLevel = 1;
-  } else {
-    currentLevel = wsg7;
-    $('#level-display span').text(currentLevel);
-  }
+  // ========= Audio =========
+  const sfx = {
+    success: new Audio('audio/success.mp3'),
+    fail:    new Audio('audio/wronganswer.mp3'),
+    tiles:   new Audio('audio/tiles.mp3'),
+  };
+  sfx.success.volume = sfx.fail.volume = sfx.tiles.volume = 0.3;
 
-  // Display gold amount
-  if (wsGold === null) {
-    score = 0;
-  	$("#score span").text("0");
-	} else {
-    score = wsGold;
-		$("#score span").text(wsGold);
-	}
+  // ========= State (derived from storage) =========
+  let currentLevel = Number(localStorage.getItem(LVL_KEY)) || 1;
+  let gold = Number(localStorage.getItem(GOLD_KEY)) || 0;
+  let currentWord = "";   // set by render/generate/solve
+  let revealIndex = 0;    // used by clue()
 
-  // Compatibility layer — single source of truth = ws-inventory
-  function loadInv() {
-    return JSON.parse(localStorage.getItem("ws-inventory") || "{}");
-  }
+  // ========= Storage helpers =========
+  const loadInv = () => JSON.parse(localStorage.getItem(INVENTORY_KEY) || "{}");
   function saveInv(inv) {
-    localStorage.setItem("ws-inventory", JSON.stringify(inv));
-    // Optional: mirror to old keys for compatibility
-    ["clue","solve","shuffle"].forEach(k => {
-      localStorage.setItem("ws-"+k, String(Number(inv[k]) || 0));
-    });
+    localStorage.setItem(INVENTORY_KEY, JSON.stringify(inv));
+    // Mirror to legacy keys (compat with existing UI/other code)
+    POWER_KEYS.forEach(k => localStorage.setItem("ws-" + k, String(Number(inv[k]) || 0)));
   }
-  function getInvCount(key) {
-    const inv = loadInv();
-    return Number(inv[key]) || 0;
-  }
-  function setInvCount(key, val) {
-    const inv = loadInv();
-    inv[key] = Math.max(0, Number(val) || 0);
-    saveInv(inv);
-  }
+  const getInvCount = k => Number(loadInv()[k]) || 0;
+  function setInvCount(k, val) { const inv = loadInv(); inv[k] = Math.max(0, Number(val) || 0); saveInv(inv); }
 
-  function tryUsePowerUpInv(key, actionFn) {
-    const have = getInvCount(key);
-    if (have <= 0) {
-      $("#"+key).addClass("disabled").attr("aria-disabled","true");
-      return;
-    }
-    actionFn?.();
-    setInvCount(key, have - 1);
-    updatePowerUpUI(key);
+  // ========= UI helpers =========
+  const $scoreSpan = $("#score span");
+  const $levelSpan = $("#level-display span");
+
+  function updateGoldUI() { $scoreSpan.text(gold); }
+  function updateLevelUI() { $levelSpan.text(currentLevel); }
+
+  function badgeOf($el) { // prefer dedicated badge; else last span (not price/icon)
+    const $b = $el.find(".count-badge");
+    return $b.length ? $b : $el.find("span").last();
   }
 
   function updatePowerUpUI(key) {
     const count = getInvCount(key);
-    const $el = $("#"+key);
-    let $badge = $el.find(".count-badge");
-    if ($badge.length === 0) $badge = $el.find("span").last();
-
+    const $el = $("#" + key);
+    const $badge = badgeOf($el);
     const off = count <= 0;
-    $el.toggleClass("disabled", off)
-       .attr("aria-disabled", String(off))
-       .prop("tabIndex", off ? -1 : 0);
-
-    if (off) $badge.hide().text("");
-    else $badge.text(count).show();
+    $el.toggleClass("disabled", off).attr("aria-disabled", String(off)).prop("tabIndex", off ? -1 : 0);
+    if (off) $badge.hide().text(""); else $badge.text(count).show();
   }
 
-  function checkPowerUps() {
-    ["clue","solve","shuffle"].forEach(updatePowerUpUI);
+  function refreshAllPowerUps() { POWER_KEYS.forEach(updatePowerUpUI); }
+
+  // ========= ClickSpark setup (if present) =========
+  if (window.clickSpark) {
+    clickSpark.setParticleCount(5);
+    clickSpark.setParticleImagePath('img/coin.png');
+    clickSpark.setParticleRotationSpeed(12);
+    clickSpark.setAnimationType('explosion');
+    clickSpark.setParticleSize(12);
+    clickSpark.setParticleSpeed(8);
+    clickSpark.setParticleDuration(300);
   }
 
-  // Wire up
-  $("#clue").on("click", () => tryUsePowerUpInv("clue", clue));
-  $("#solve").on("click", () => tryUsePowerUpInv("solve", solveWord));
-  $("#shuffle").on("click", () => tryUsePowerUpInv("shuffle", generateWord));
+  // ========= Word rendering =========
+  function renderWord(word, opts = { scramble: true, fillInput: false }) {
+    currentWord = word;
+    revealIndex = 0;
 
-  // On load
-  checkPowerUps();
-
-  // Clickspark
-  clickSpark.setParticleCount(5);
-  clickSpark.setParticleImagePath('img/coin.png');
-  clickSpark.setParticleRotationSpeed(12);
-  clickSpark.setAnimationType('explosion');
-  clickSpark.setParticleSize(12);
-  clickSpark.setParticleSpeed(8);
-  clickSpark.setParticleDuration(300);
-
-  function generateWord() {
-    //currentWord = words[Math.floor(Math.random() * words.length)];
-    currentWord = words[currentLevel - 1];
-    const scrambledWord = scramble(currentWord);
+    const show = opts.scramble ? scramble(word) : word;
     const wordDisplay = document.getElementById('word-display');
     wordDisplay.innerHTML = '';
-    index = 0;
 
-    tiles.play();
+    sfx.tiles.currentTime = 0;
+    sfx.tiles.play();
 
-    for (let i = 0; i < scrambledWord.length; i++) {
+    for (let i = 0; i < show.length; i++) {
       const letter = document.createElement('span');
-      letter.textContent = scrambledWord[i];
+      letter.textContent = show[i];
       letter.classList.add('letter');
       letter.style.animationDelay = `${i * 0.05}s`;
       wordDisplay.appendChild(letter);
     }
 
-    $('#user-input').focus();
-    $("#user-input").attr("placeholder", "Gissa ordet");
+    const $input = $('#user-input');
+    $input.focus();
+    if (opts.fillInput) $input.val(word);
+    $input.attr("placeholder", opts.fillInput ? "" : "Gissa ordet");
   }
 
-  function solveWord() {
-    currentWord = words[currentLevel - 1];
-    const wordDisplay = document.getElementById('word-display');
-    wordDisplay.innerHTML = '';
-
-    tiles.play();
-
-    for (let i = 0; i < currentWord.length; i++) {
-      const letter = document.createElement('span');
-      letter.textContent = currentWord[i];
-      letter.classList.add('letter');
-      letter.style.animationDelay = `${i * 0.05}s`;
-      wordDisplay.appendChild(letter);
+  // Fisher–Yates; ensures we don’t accidentally return the same exact ordering when possible
+  function scramble(word) {
+    const arr = word.split('');
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
     }
-
-    $('#user-input').focus();
-    //$("#user-input").attr("placeholder", "Gissa ordet");
-    $('#user-input').val(currentWord);
+    const shuffled = arr.join('');
+    return (shuffled === word && word.length > 1) ? scramble(word) : shuffled;
   }
 
-  function clue() {
-    $('#user-input').focus();
+  // ========= Power-ups (use) =========
+  async function tryUsePowerUp(key, actionFn) {
+    const have = getInvCount(key);
+    if (have <= 0) {
+      const $el = $("#" + key);
+      $el.addClass("disabled").attr("aria-disabled", "true");
+      // Optional: swal("Slut!", "Du har inga kvar.");
+      return;
+    }
+    // Run effect
+    actionFn?.();
+    // Decrement & refresh UI
+    setInvCount(key, have - 1);
+    updatePowerUpUI(key);
+  }
 
-    if (index < currentWord.length) {
-      $("#user-input").val(function(i, oldVal) {
-        return oldVal + currentWord[index];
+  function doClue() {
+    $('#user-input').focus();
+    if (!currentWord) return;
+
+    if (revealIndex < currentWord.length) {
+      $("#user-input").val(function (_i, oldVal) {
+        return oldVal + currentWord[revealIndex];
       });
-      index++;
-    } else {
+      revealIndex++;
+    } else if (typeof swal === "function") {
       swal("Ledtråd", "Alla bokstäver är avslöjade!");
     }
   }
 
-  function scramble(word) {
-    let scrambled = '';
-    const wordArray = word.split('');
+  function doSolve() {
+    const word = WORDS[currentLevel - 1];
+    renderWord(word, { scramble: false, fillInput: true });
+  }
 
-    while (wordArray.length > 0) {
-      const randomIndex = Math.floor(Math.random() * wordArray.length);
-      scrambled += wordArray.splice(randomIndex, 1);
-    }
+  function doShuffle() {
+    const word = WORDS[currentLevel - 1];
+    renderWord(word, { scramble: true, fillInput: false });
+  }
 
-    return scrambled;
+  // ========= Game logic =========
+  function generateWord() {
+    const word = WORDS[currentLevel - 1];
+    renderWord(word, { scramble: true, fillInput: false });
   }
 
   function checkWord() {
-    const userInput = $('#user-input').val().toLowerCase().trim();
+    const guess = $('#user-input').val().toLowerCase().trim();
 
-    if (userInput === currentWord) {
-      // Update level
-      currentLevel++;
+    if (guess === currentWord) {
+      // correct
+      $('#user-input').attr("placeholder", "Rätt!");
+      gold += 1;
+      localStorage.setItem(GOLD_KEY, String(gold));
+      updateGoldUI();
 
-      // Update placeholder
-      $("#user-input").attr("placeholder", "Rätt!");
+      if (window.clickSpark) clickSpark.fireParticles($('#score'));
+      sfx.success.currentTime = 0;
+      sfx.success.play();
 
-      // Update score
-      score++;
-      $('#score span').text(score);
-      localStorage.setItem("ws-gold", score);
-
-      // Clickspark
-      clickSpark.fireParticles($('#score'));
-      success.play();
-
-      // Check current level
-      if (currentLevel > words.length) {
-        localStorage.setItem("ws-g7", 10);
-        setTimeout(function() {
-          window.location = "index.html";
-        }, 800);
+      // advance level
+      currentLevel += 1;
+      if (currentLevel > WORDS.length) {
+        localStorage.setItem(LVL_KEY, "10"); // mark completed for this stage
+        setTimeout(() => { window.location = "index.html"; }, 800);
       } else {
-        localStorage.setItem("ws-g7", currentLevel);
+        localStorage.setItem(LVL_KEY, String(currentLevel));
+        setTimeout(() => {
+          updateLevelUI();
+          generateWord();
+        }, 1000);
       }
-
-      // Generate new word
-      setTimeout(function() {
-        $('#level-display span').text(currentLevel);
-        generateWord();
-      }, 1000);
     } else {
-      fail.play();
-
+      // wrong
+      sfx.fail.currentTime = 0;
+      sfx.fail.play();
       $('#user-input').addClass('shake');
-      setTimeout(function(){
-        $('#user-input').removeClass('shake');
-      },300);
+      setTimeout(() => { $('#user-input').removeClass('shake'); }, 300);
     }
 
-    // Empty input field
+    // clear input either way
     $('#user-input').val('');
   }
 
-  $('#check-btn').on('click', function() {
-    checkWord();
-  });
+  // ========= Event wiring =========
+  $("#clue").on("click",   () => tryUsePowerUp("clue",   doClue));
+  $("#solve").on("click",  () => tryUsePowerUp("solve",  doSolve));
+  $("#shuffle").on("click",() => tryUsePowerUp("shuffle",doShuffle));
 
-  $('#user-input').on('keyup', function(event) {
-    if (event.key === 'Enter') {
-      checkWord();
-    }
-  });
+  $('#check-btn').on('click', checkWord);
+  $('#user-input').on('keyup', function (e) { if (e.key === 'Enter') checkWord(); });
 
+  // ========= Initial render =========
+  updateGoldUI();
+  updateLevelUI();
+  refreshAllPowerUps();
   generateWord();
 });
