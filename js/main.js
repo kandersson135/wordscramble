@@ -235,9 +235,10 @@ $(document).ready(function() {
         localStorage.removeItem("ws-g19");
         localStorage.removeItem("ws-g20");
         localStorage.removeItem("ws-gold");
-        localStorage.removeItem("ws-clue");
-        localStorage.removeItem("ws-shuffle");
-        localStorage.removeItem("ws-solve");
+        // localStorage.removeItem("ws-clue");
+        // localStorage.removeItem("ws-shuffle");
+        // localStorage.removeItem("ws-solve");
+        localStorage.removeItem("ws-inventory");
       	location.reload();
       }
     });

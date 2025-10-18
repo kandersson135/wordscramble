@@ -30,35 +30,64 @@ $(document).ready(function() {
 		$("#score span").text(wsGold);
 	}
 
-  // Set power up count
-  function checkPowerUps() {
-    if (localStorage.getItem("ws-clue") === null || localStorage.getItem("ws-clue") <= 0) {
-      $('#clue').addClass("disabled");
-  	} else {
-  		$('#clue span').html(localStorage.getItem("ws-clue"));
-  		$('#clue span').show();
-  	}
-
-    if (localStorage.getItem("ws-solve") === null || localStorage.getItem("ws-solve") <= 0) {
-      $('#solve').addClass("disabled");
-  	} else {
-  		$('#solve span').html(localStorage.getItem("ws-solve"));
-  		$('#solve span').show();
-  	}
-
-    if (localStorage.getItem("ws-shuffle") === null || localStorage.getItem("ws-shuffle") <= 0) {
-      $('#shuffle').addClass("disabled");
-  	} else {
-  		$('#shuffle span').html(localStorage.getItem("ws-shuffle"));
-  		$('#shuffle span').show();
-  	}
+  // Compatibility layer — single source of truth = ws-inventory
+  function loadInv() {
+    return JSON.parse(localStorage.getItem("ws-inventory") || "{}");
+  }
+  function saveInv(inv) {
+    localStorage.setItem("ws-inventory", JSON.stringify(inv));
+    // Optional: mirror to old keys for compatibility
+    ["clue","solve","shuffle"].forEach(k => {
+      localStorage.setItem("ws-"+k, String(Number(inv[k]) || 0));
+    });
+  }
+  function getInvCount(key) {
+    const inv = loadInv();
+    return Number(inv[key]) || 0;
+  }
+  function setInvCount(key, val) {
+    const inv = loadInv();
+    inv[key] = Math.max(0, Number(val) || 0);
+    saveInv(inv);
   }
 
-  // Call the function initially
-  checkPowerUps();
+  function tryUsePowerUpInv(key, actionFn) {
+    const have = getInvCount(key);
+    if (have <= 0) {
+      $("#"+key).addClass("disabled").attr("aria-disabled","true");
+      return;
+    }
+    actionFn?.();
+    setInvCount(key, have - 1);
+    updatePowerUpUI(key);
+  }
 
-  // Set up a recurring check every second (1000 milliseconds)
-  setInterval(checkPowerUps, 100);
+  function updatePowerUpUI(key) {
+    const count = getInvCount(key);
+    const $el = $("#"+key);
+    let $badge = $el.find(".count-badge");
+    if ($badge.length === 0) $badge = $el.find("span").last();
+
+    const off = count <= 0;
+    $el.toggleClass("disabled", off)
+       .attr("aria-disabled", String(off))
+       .prop("tabIndex", off ? -1 : 0);
+
+    if (off) $badge.hide().text("");
+    else $badge.text(count).show();
+  }
+
+  function checkPowerUps() {
+    ["clue","solve","shuffle"].forEach(updatePowerUpUI);
+  }
+
+  // Wire up
+  $("#clue").on("click", () => tryUsePowerUpInv("clue", clue));
+  $("#solve").on("click", () => tryUsePowerUpInv("solve", solveWord));
+  $("#shuffle").on("click", () => tryUsePowerUpInv("shuffle", generateWord));
+
+  // On load
+  checkPowerUps();
 
   // Clickspark
   clickSpark.setParticleCount(5);
@@ -194,34 +223,4 @@ $(document).ready(function() {
   });
 
   generateWord();
-
-  // Clue button click
-	$('#clue').click(function() {
-    clue();
-
-    // Subtract 1 of clue power
-    let oldCluePower = localStorage.getItem("ws-clue");
-    localStorage.setItem("ws-clue", (parseInt(oldCluePower)) - 1);
-    $('#clue span').html(localStorage.getItem("ws-clue"));
-  });
-
-  // Solve button click
-	$('#solve').click(function() {
-    solveWord();
-
-  	// Subtract 1 of solve power
-  	let oldSolvePower = localStorage.getItem("ws-solve");
-  	localStorage.setItem("ws-solve", (parseInt(oldSolvePower)) - 1);
-  	$('#solve span').html(localStorage.getItem("ws-solve"));
-  });
-
-  // Shuffle button click
-	$('#shuffle').click(function() {
-    generateWord();
-
-    // Subtract 1 of shuffle power
-    let oldShufflePower = localStorage.getItem("ws-shuffle");
-    localStorage.setItem("ws-shuffle", (parseInt(oldShufflePower)) - 1);
-    $('#shuffle span').html(localStorage.getItem("ws-shuffle"));
-  });
 });
